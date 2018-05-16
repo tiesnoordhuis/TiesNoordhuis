@@ -9,6 +9,7 @@ const server = http.createServer((request, responce) => {
   responce.setHeader("Content-type", "text/html");
   responce.write(moduleTies.whatIsMyName() + "\n");
   responce.end("hello world");
+  responce.on("finish", () => console.log("server responce send: " + Object.keys(responce._event)));
 });
 
 server.listen(port, hostname, () => {
