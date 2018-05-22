@@ -6,11 +6,6 @@ const stream = require("stream");
 const events = require("events");
 const eventEmitter = new events.EventEmitter();
 
-request.on('error', (err) => {
-  // This prints the error message and stack trace to `stderr`.
-  console.error(err.stack);
-});
-
 const hostname = "localhost";
 const port = "3000";
 
@@ -27,4 +22,19 @@ server.on("request", (request, responce) => {
 
 server.listen(port, hostname, () => {
   console.log(`server running on ${hostname}:${port}`);
+});
+
+request.on('error', (err) => {
+  // This prints the error message and stack trace to `stderr`.
+  console.error(err.stack);
+});
+
+responce.on('error', (err) => {
+  // This prints the error message and stack trace to `stderr`.
+  console.error(err.stack);
+});
+
+eventEmitter.on('error', (err) => {
+  // This prints the error message and stack trace to `stderr`.
+  console.error(err.stack);
 });
