@@ -6,53 +6,76 @@ const stream = require("stream");
 const events = require("events");
 const eventEmitter = new events.EventEmitter();
 
-eventEmitter.on("error", (err) => {
-  console.error("eventEmitter encountered error");
-  console.error(err);
-});
-
 const hostname = "localhost";
 const port = "3000";
 
-const server = http.createServer((request, responce) => {
+const server = http.createServer();
+
+server.on("request", (request, response) => {
+  request.on('error', (err) => {
+    // This prints the error message and stack trace to `stderr`.
+    console.error(err.stack);
+  });
+
+  response.on('error', (err) => {
+    // This prints the error message and stack trace to `stderr`.
+    console.error(err.stack);
+  });
   //logRequestInfo(request);
-  responce.statusCode = 200;
-  responce.setHeader("Content-type", "text/html");
-  fs.readFile("index.html", (err, data) => {
-    responce.write(data);
-    responce.end();
-  })
-  /*makeServerResponce(request);
-  eventEmitter.on("serverResponceFile", (responceFile) => {
-    console.log("starting to write responce in server");
-    responce.write(responceFile, () => {
-      console.log("responce written");
+  response.statusCode = 200;
+  response.setHeader("Content-type", "text/html");
+  makeServerResponse(request);
+  eventEmitter.on("serverResponseFile", (responseFile) => {
+    console.log("starting to write response in server");
+    response.write(responseFile, () => {
+      console.log("response written");
     });
   });
-  eventEmitter.on("serverResponceEnd", () => {
+  eventEmitter.once("serverResponseEnd", () => {
     console.log("starting to write end in server");
-    responce.end();
+    response.end("", () => {
+      console.log("response end sent");
+    });
+    console.log("response finished");
+    console.log(response.finished);
   });
-  */
-  responce.on("finish", () => console.log("responce finish event"));
+  console.log(eventEmitter.listenerCount("serverResponseFile"));
+  console.log(eventEmitter.rawListeners("serverResponseFile"));
+  response.on("finish", () => {
+    console.log("response finish event");
+    eventEmitter.removeAllListeners("serverResponseFile");
+    eventEmitter.removeAllListeners("serverResponseEnd");
+  });
 });
 
-function makeServerResponce(request) {
+function makeServerResponse(request) {
   console.log(request.url);
-  if (request.url === "/flavicon.ico") {
-    console.log("icon request");
+  if (request.url === "/favicon.ico") {
+    makeIconResponse(request);
   } else {
-    console.log("function to make responce called");
+    console.log("function to make response called");
     var readStream = fs.createReadStream("index.html", "utf8");
     readStream.on("data", (data) => {
-      console.log("data in responce function being read, emitting serverResponceFile");
-      eventEmitter.emit("serverResponceFile", data);
+      console.log("data in response function being read, emitting serverResponseFile");
+      eventEmitter.emit("serverResponseFile", data);
     });
-    readStream.on("end", () => {
-      console.log("data in responce function reading has ended, emitting serverResponceEnd");
-      eventEmitter.emit("serverResponceEnd");
+    readStream.on("close", () => {
+      console.log("data in response function reading has ended, emitting serverResponseEnd");
+      eventEmitter.emit("serverResponseEnd");
     });
   }
+}
+
+function makeIconResponse(request) {
+  var readStream = fs.createReadStream("favicon.ico");
+  readStream.on("data", (data) => {
+    console.log("data in icon response function being read, emitting serverResponseFile");
+    eventEmitter.emit("serverResponseFile", data);
+  })
+  readStream.on("close", () => {
+    console.log("data in icon response function reading has ended, emitting serverResponseEnd");
+    eventEmitter.emit("serverResponseEnd");
+  });
 }
 
 function logRequestInfo(request) {
@@ -74,4 +97,15 @@ function logRequestInfo(request) {
 
 server.listen(port, hostname, () => {
   console.log(`server running on ${hostname}:${port}`);
+});
+
+eventEmitter.on("newListener", (event, listener) => {
+  console.log("new listener added:");
+  console.log(event);
+  console.log(listener);
+})
+
+eventEmitter.on('error', (err) => {
+  // This prints the error message and stack trace to `stderr`.
+  console.error(err.stack);
 });
