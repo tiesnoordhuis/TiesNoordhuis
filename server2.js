@@ -57,11 +57,8 @@ function createResponse(request) {
   errorResponse[2] = [""];
   var { readable, domain, socket, connection, httpVersionMajor, httpVersionMinor, httpVersion, complete, headers, rawHeaders, trailers, rawTrailers, upgrade, url, method, statusCode, statusMessage, client} = request;
   var { protocol, slashes, auth, host, port, hostname, hash, search, query, pathname, path, href} = urlModule.parse(url);
-  console.log(Object.keys(request));
-  console.log(Object.keys(urlModule.parse(url)));
-  console.log(url);
   console.log(method);
-  console.log(hostname);
+  console.log(pathname);
   switch (method) {
     case "GET":
       switch (pathname) {
@@ -95,22 +92,18 @@ function createStreamToServerResponse(pathname) {
     case "/":
       var readStream = fsModule.createReadStream("index.html", "utf8");
       readStream.on("data", (data) => {
-        console.log("data in response function being read, emitting serverResponseFile");
         eventEmitter.emit("serverResponseFile", data);
       });
       readStream.on("close", () => {
-        console.log("data in response function reading has ended, emitting serverResponseEnd");
         eventEmitter.emit("serverResponseEnd");
       });
       break;
     case "/favicon.ico":
       var readStream = fsModule.createReadStream("favicon.ico");
       readStream.on("data", (data) => {
-        console.log("data in response function being read, emitting serverResponseFile");
         eventEmitter.emit("serverResponseFile", data);
       });
       readStream.on("close", () => {
-        console.log("data in response function reading has ended, emitting serverResponseEnd");
         eventEmitter.emit("serverResponseEnd");
       });
       break;
