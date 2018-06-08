@@ -3,7 +3,7 @@ const app = express();
 const router = express.Router();
 
 router.get("/user/:id", (request, response, next) => {
-  request.storage = ("hi user with number: " + request.params.id);
+  response.locals.storage = ("hi user with number: " + request.params.id);
   next();
 });
 
@@ -13,7 +13,7 @@ router.param("id", (request, response, next, id) => {
 });
 
 router.get("/*", (request, response) => {
-  response.send(request.storage + "bye world");
+  response.send(response.locals.storage + "bye world");
   response.end();
 });
 
