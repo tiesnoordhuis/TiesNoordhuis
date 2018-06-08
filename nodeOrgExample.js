@@ -1,15 +1,16 @@
-const EventEmitter = require('events');
-const readline = require('readline');
+const pug = require("expressApp/pug");
 
-class MyEmitter extends EventEmitter {}
+// Compile the source code
+const compiledFunction = pug.compileFile('template.pug');
 
-const myEmitter = new MyEmitter();
+// Render a set of data
+console.log(compiledFunction({
+  name: 'Timothy'
+}));
+// "<p>Timothy's Pug source code!</p>"
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-rl.on('line', (input) => {
-  console.log(`Received: ${input}`);
-});
+// Render another set of data
+console.log(compiledFunction({
+  name: 'Forbes'
+}));
+// "<p>Forbes's Pug source code!</p>"
