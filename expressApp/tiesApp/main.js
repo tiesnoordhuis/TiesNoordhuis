@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 const events = require("events");
+const createHTTPError = require('http-errors');
+const path = require('path');
 
 const serverLogEvent = new events.EventEmitter();
 
@@ -10,11 +12,28 @@ var serverLog = [];
 serverLogEvent.on("request", (request) => {
   serverLog.push(request.ip);
   console.log(serverLog.length);
-})
+});
+
+router.get("*favicon.ico", express.static(path.join(__dirname, 'public/images'), {setHeaders: (response, path, stat) => {
+  response.setHeader("Content-Type", "image/x-icon")
+}}));
 
 router.get("/user/:id", (request, response, next) => {
-  response.locals.storage = ("hi user with number: " + request.params.id);
+  response.locals.userID = request.params.id;
+  console.log("made id");
   next();
+});
+
+router.get("/user/*", (request, response) => {
+  console.log("router response point reached");
+  if (response.locals.userID) {
+    console.log("check id true");
+    response.end("welkom user " + response.locals.userID);
+  } else {
+    console.log("check id false");
+    response.end("no valid userID")
+    createHTTPError(500, "no valid userID");
+  }
 });
 
 router.param("id", (request, response, next, id) => {
@@ -22,20 +41,33 @@ router.param("id", (request, response, next, id) => {
   next();
 });
 
-router.get("/*", (request, response) => {
-  var responseString = "bye world";
-  if (response.locals.storage) {
-    responseString = response.locals.storage + " " + responseString;
+router.get("/", (request, response) => {
+  console.log("redirect naar index");
+  response.redirect("/index.html")
+});
+
+router.get("/serverLog", (request,response) => {
+  for (var i = 0; i < serverLog.length; i++) {
+    console.log(i + ": " +  serverLog[i]);
   }
-  response.send(responseString);
-  response.end();
+  response.redirect("/");
 });
 
 app.use((request, response, next) => {
   serverLogEvent.emit("request", request);
   next();
-})
+});
+
 app.use(router);
+app.use(express.static(path.join(__dirname, 'public/html'), {setHeaders: (response, path, stat) => {
+  response.setHeader("Content-Type", "text/html")
+}}));
+app.use(express.static(path.join(__dirname, 'public/css'), {setHeaders: (response, path, stat) => {
+  response.setHeader("Content-Type", "text/css")
+}}));
+app.use(express.static(path.join(__dirname, 'public/js'), {setHeaders: (response, path, stat) => {
+  response.setHeader("Content-Type", "text/javascript")
+}}));
 
 app.listen(3000, () => {
   console.log("app listening port 3000");
