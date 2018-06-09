@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
+const serverEventMesseger = express.Router();
 const events = require("events");
 const createHTTPError = require('http-errors');
 const path = require('path');
@@ -12,6 +13,23 @@ var serverLog = [];
 serverLogEvent.on("request", (request) => {
   serverLog.push(request.ip);
   console.log(serverLog.length);
+});
+
+serverEventMesseger.get((request, response) => {
+  response.writeHead(200, {
+      'Connection': 'keep-alive',
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache'
+    });
+
+    setInterval(() => {
+      console.log("writing serverEvent message");
+      if (serverLog.length > 6) {
+        response.send("secret");
+      } else {
+        response.send("niet speciaal");
+      }
+    }, 1000);
 });
 
 router.get("*favicon.ico", express.static(path.join(__dirname, 'public/images'), {setHeaders: (response, path, stat) => {
@@ -58,7 +76,13 @@ app.use((request, response, next) => {
   next();
 });
 
+app.use((request, response, next) => {
+  console.log(request.url);
+  console.log(request.method);
+  next();
+})
 app.use(router);
+app.use("/serverEvents", serverEventMesseger);
 app.use(express.static(path.join(__dirname, 'public/html'), {setHeaders: (response, path, stat) => {
   response.setHeader("Content-Type", "text/html")
 }}));
