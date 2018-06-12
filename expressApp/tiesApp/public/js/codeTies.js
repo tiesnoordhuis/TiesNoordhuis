@@ -13,13 +13,22 @@ function buttonTest() {
 var serverEvents = new EventSource("/serverEvents");
 var serverMsg = "";
 
-function onServerMsg(msg) {
+serverEvents.addEventListener("message", function onServerMsg(msg) {
   console.log(msg);
-  if (msg === "secret") {
+  if (msg.data === "secret") {
     serverMsg = msg;
   } else {
     serverMsg = "iets anders";
   }
-}
+});
 
-serverEvents.onmessage = onServerMsg(e);
+var socket = new WebSocket("ws//localhost:3000/webSocket");
+
+socket.addEventListener("open", () => {
+  socket.send("hello server");
+  console.log("send hello to server");
+});
+
+socket.addEventListener("message", (msg) => {
+  console.log("recieved message from server reading: " + msg.data);
+});
