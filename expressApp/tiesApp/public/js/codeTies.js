@@ -22,7 +22,7 @@ serverEvents.addEventListener("message", function onServerMsg(msg) {
   }
 });
 
-var socket = new WebSocket("ws//localhost:3000/webSocket");
+var socket = new WebSocket("ws://localhost:3000/webSocket");
 
 socket.addEventListener("open", () => {
   socket.send("hello server");

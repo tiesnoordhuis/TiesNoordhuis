@@ -1,8 +1,10 @@
 const express = require("express");
+const webSocket = require("ws");
 const app = express();
 const router = express.Router();
 const serverEventMesseger = express.Router();
 const serverSocket = express.Router();
+const ws = new webSocket.Server({ noServer: true});
 const events = require("events");
 const createHTTPError = require('http-errors');
 const path = require('path');
@@ -16,9 +18,30 @@ serverLogEvent.on("request", (request) => {
   console.log(serverLog.length);
 });
 
-serverSocket.all((request, response) => {
-  console.log("serverSocket got request");
-  response.write("a piece of data");
+ws.on("connection", (websocketObject) => {
+  console.log("websocket connection reached");
+  console.log(websocketObject);
+})
+
+ws.on("upgrade", (websocketObject) => {
+  console.log("webSocket connection upgraded");
+  console.log(websocketObject);
+})
+
+serverSocket.all("*", (request, response) => {
+  console.log("websocket request send to middleware");
+  console.log(request.headers.connection);
+  console.log(request.headers.upgrade);
+  if (request.headers.connection === "Upgrade") {
+    console.log("websocket request should be upgraded");
+    console.log(ws.shouldHandle(request));
+    console.log(server.socket);
+    console.log(server.head);
+    ws.handleUpgrade(request, server.socket, server.head, (websocketObject) => {
+        ws.emit('connection', websocketObject, request);
+        console.log("emit websocket connection");
+      });
+    };
 });
 
 serverEventMesseger.get("", (request, response) => {
@@ -101,6 +124,6 @@ app.use(express.static(path.join(__dirname, 'public/js'), {setHeaders: (response
   response.setHeader("Content-Type", "text/javascript")
 }}));
 
-app.listen(3000, () => {
+var server = app.listen(3000, () => {
   console.log("app listening port 3000");
 });
