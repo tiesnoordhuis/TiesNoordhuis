@@ -35,8 +35,6 @@ serverSocket.all("*", (request, response) => {
   if (request.headers.connection === "Upgrade") {
     console.log("websocket request should be upgraded");
     console.log(ws.shouldHandle(request));
-    console.log(server.socket);
-    console.log(server.head);
     ws.handleUpgrade(request, server.socket, server.head, (websocketObject) => {
         ws.emit('connection', websocketObject, request);
         console.log("emit websocket connection");
@@ -126,4 +124,9 @@ app.use(express.static(path.join(__dirname, 'public/js'), {setHeaders: (response
 
 var server = app.listen(3000, () => {
   console.log("app listening port 3000");
+  console.log(Object.keys(server));
 });
+
+server.on("upgrade", () => {
+  console.log(" nieuwe server upgrade");
+})
