@@ -7,9 +7,10 @@ function frameIni() {
 }
 
 function buttonTest() {
-  document.getElementById("textDisplay").innerHTML = serverMsg;
+  document.getElementById("textDisplay").innerHTML = "work in progress";
 }
 
+/*
 var serverEvents = new EventSource("/serverEvents");
 var serverMsg = "";
 
@@ -32,3 +33,4 @@ socket.addEventListener("open", () => {
 socket.addEventListener("message", (msg) => {
   console.log("recieved message from server reading: " + msg.data);
 });
+*/
