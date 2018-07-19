@@ -121,12 +121,6 @@ app.use(express.static(path.join(__dirname, 'public/css'), {setHeaders: (respons
 app.use(express.static(path.join(__dirname, 'public/js'), {setHeaders: (response, path, stat) => {
   response.setHeader("Content-Type", "text/javascript")
 }}));
-app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css'), {setHeaders: (response, path, stat) => {
-  response.setHeader("Content-Type", "text/css")
-}}));
-app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js'), {setHeaders: (response, path, stat) => {
-  response.setHeader("Content-Type", "text/javascript")
-}}));
 
 var server = app.listen(3000, () => {
   console.log("app listening port 3000");
