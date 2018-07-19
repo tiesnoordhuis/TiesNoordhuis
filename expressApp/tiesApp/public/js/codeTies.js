@@ -4,6 +4,39 @@ function frameIni() {
   var width = screen.width;
   var height = screen.height;
   console.log("window loaded with width: " + width + " and height: " + height);
+  if (width >= 320) {
+    setClasses("large");
+  } else {
+    setClasses("small");
+  }
+}
+
+function setClasses(size) {
+  switch (size) {
+    case ("large"): {
+      setClassesLarge();
+      break;
+    }
+    case ("small"): {
+      setClassesSmall();
+      break;
+    }
+    default: {
+      console.error("no valid size to set classes");
+    }
+  }
+}
+
+function setClassesLarge() {
+  document.getElementById("titleText").classList.add("titleTextBigScreenClass");
+  document.getElementById("titleSubText").classList.add("titleSubTextBigScreenClass");
+  document.getElementById("titleSubSubText").classList.add("titleSubSubTextBigScreenClass");
+}
+
+function setClassesSmall() {
+  document.getElementById("titleText").classList.add("titleTextSmallScreenClass");
+  document.getElementById("titleSubText").classList.add("titleSubTextSmallScreenClass");
+  document.getElementById("titleSubSubText").classList.add("titleSubSubTextSmallScreenClass");
 }
 
 function buttonTest() {
