@@ -1,27 +1,28 @@
 window.onload = frameIni();
 
 function frameIni() {
-  var width = screen.width;
-  var height = screen.height;
+  var width = document.documentElement.clientWidth;
+  var height = document.documentElement.clientHeight;
   console.log("window loaded with width: " + width + " and height: " + height);
   if (width >= 320) {
     setClasses("large");
   } else {
     setClasses("small");
   }
-  //setContentBlocks(width);
+  setContentBlocks(width);
 }
 
 function setContentBlocks(width) {
-  var widthBlock = ((Math.floor(width)) / 2) - 4;
-  var heightBlock = widthBlock
-  if (heightBlock > 800) {
-    heightBlock = 796;
+  var widthBlock = (Math.floor(width) / 2);
+  console.log(widthBlock);
+  console.log(widthBlock * 2);
+  var heightBlock = widthBlock - 10;
+  if (heightBlock > 500) {
+    heightBlock = 500;
   }
   var contentBlocks = document.getElementsByClassName("contentBlock");
   for (var i = 0; i < contentBlocks.length; i++) {
     contentBlocks[i].style.height = heightBlock.toString() + "px";
-    contentBlocks[i].style.width = widthBlock.toString() + "px";
   }
 }
 

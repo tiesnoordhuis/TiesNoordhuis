@@ -65,6 +65,7 @@ a {
 .flexRow {
   display: flex;
   flex-wrap: nowrap;
+  width: 100%;
 }
 
 .contentBlock {
@@ -72,4 +73,6 @@ a {
   border: 2px;
   border-color: white;
   border-style: solid;
+  flex: 1 1 auto;
+  width: 150px;
 }
