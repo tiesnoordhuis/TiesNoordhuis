@@ -22,7 +22,7 @@ function setContentBlocks(width) {
   var widthBlock = (Math.floor(width) / 2);
   console.log(widthBlock);
   console.log(widthBlock * 2);
-  var heightBlock = widthBlock - 10;
+  var heightBlock = widthBlock * (3/4);
   if (heightBlock > 500) {
     heightBlock = 500;
   }
