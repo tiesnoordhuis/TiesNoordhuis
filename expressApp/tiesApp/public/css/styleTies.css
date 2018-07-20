@@ -32,7 +32,7 @@ a {
   font-size: 5em;
 }
 
-#titleSubText {
+#titleSubText, #titleSubSubText {
   text-align: center;
   font-weight: normal;
 }
@@ -47,17 +47,29 @@ a {
   font-size: 3em;
 }
 
-#titleSubSubText {
-  text-align: center;
-  font-weight: normal;
-}
-
 .titleSubSubTextBigScreenClass {
-  margin: 10px 20px 10px 20px;
+  margin: 10px 20px 20px 20px;
   font-size: 2em;
 }
 
 .titleSubSubTextSmallScreenClass {
-  margin: 5px 5px 5px 5px;
+  margin: 5px 5px 10px 5px;
   font-size: 2em;
+}
+
+#mainContent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flexRow {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.contentBlock {
+  margin: 0px;
+  border: 2px;
+  border-color: white;
+  border-style: solid;
 }

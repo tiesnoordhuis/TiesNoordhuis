@@ -9,6 +9,20 @@ function frameIni() {
   } else {
     setClasses("small");
   }
+  //setContentBlocks(width);
+}
+
+function setContentBlocks(width) {
+  var widthBlock = ((Math.floor(width)) / 2) - 4;
+  var heightBlock = widthBlock
+  if (heightBlock > 800) {
+    heightBlock = 796;
+  }
+  var contentBlocks = document.getElementsByClassName("contentBlock");
+  for (var i = 0; i < contentBlocks.length; i++) {
+    contentBlocks[i].style.height = heightBlock.toString() + "px";
+    contentBlocks[i].style.width = widthBlock.toString() + "px";
+  }
 }
 
 function setClasses(size) {
