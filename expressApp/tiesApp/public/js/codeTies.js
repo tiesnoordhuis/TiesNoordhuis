@@ -1,8 +1,8 @@
 window.onload = frameIni();
 
 function frameIni() {
-  var width = document.documentElement.clientWidth;
-  var height = document.documentElement.clientHeight;
+  var width = Math.min(document.documentElement.clientWidth, screen.width);
+  var height = Math.min(document.documentElement.clientHeight, screen.height);
   console.log("window loaded with width: " + width + " and height: " + height);
   if (width >= 320) {
     setClasses("large");
@@ -13,6 +13,12 @@ function frameIni() {
 }
 
 function setContentBlocks(width) {
+  if (width < 250) {
+    var flexRows = document.getElementsByClassName("flexRow");
+    for (var i = 0; i < flexRows.length; i++) {
+      flexRows[i].style.flexWrap = "wrap";
+    }
+  }
   var widthBlock = (Math.floor(width) / 2);
   console.log(widthBlock);
   console.log(widthBlock * 2);
