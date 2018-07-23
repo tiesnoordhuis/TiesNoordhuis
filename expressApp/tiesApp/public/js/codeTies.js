@@ -21,6 +21,11 @@ function makeBoxes(width, height) {
 function selectBlock(n) {
   closeBlocks();
   if (checkOpen(n)) {
+    for (var i = 1; i < 5; i++) {
+      if (i != n) {
+        setOpen(i);
+      }
+    }
     setClose(n);
     openBlock(n);
     return;
@@ -40,6 +45,7 @@ function checkOpen(n) {
 }
 
 function setOpen(n) {
+  console.log("set open " + n);
   var blocks = document.getElementsByClassName("contentBlock");
   var block = blocks[n - 1];
   var blockText = block.children[0].children[0].children[0];
