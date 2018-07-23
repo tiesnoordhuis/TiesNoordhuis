@@ -121,6 +121,12 @@ app.use(express.static(path.join(__dirname, 'public/css'), {setHeaders: (respons
 app.use(express.static(path.join(__dirname, 'public/js'), {setHeaders: (response, path, stat) => {
   response.setHeader("Content-Type", "text/javascript")
 }}));
+app.use(express.static(path.join(__dirname, 'node_modules/jquery/dist'), {setHeaders: (response, path, stat) => {
+  response.setHeader("Content-Type", "text/javascript")
+}}));
+app.use(express.static(path.join(__dirname, 'node_modules/popper.js/dist/umd'), {setHeaders: (response, path, stat) => {
+  response.setHeader("Content-Type", "text/javascript")
+}}));
 
 var server = app.listen(3000, () => {
   console.log("app listening port 3000");

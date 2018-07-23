@@ -1,7 +1,4 @@
 body {
-  padding: 0px;
-  border: 0px;
-  margin: 0px;
   background-color: #c0eaf2;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -10,68 +7,10 @@ a {
   color: #00B7FF;
 }
 
-#topBanner {
-  width: 100%;
+#headerRow {
   background-color: #c0d9f1;
-  overflow: auto;
 }
 
-#titleText {
-  text-align: center;
-  font-weight: bold;
-  overflow: auto;
-}
-
-.titleTextBigScreenClass {
-  margin: 80px 20px 40px 20px;
-  font-size: 5em;
-}
-
-.titleTextSmallScreenClass {
-  margin: 40px 10px 10px 10px;
-  font-size: 5em;
-}
-
-#titleSubText, #titleSubSubText {
-  text-align: center;
-  font-weight: normal;
-}
-
-.titleSubTextBigScreenClass {
-  margin: 10px 20px 10px 20px;
-  font-size: 3em;
-}
-
-.titleSubTextSmallScreenClass {
-  margin: 5px 5px 5px 5px;
-  font-size: 3em;
-}
-
-.titleSubSubTextBigScreenClass {
-  margin: 10px 20px 20px 20px;
-  font-size: 2em;
-}
-
-.titleSubSubTextSmallScreenClass {
-  margin: 5px 5px 10px 5px;
-  font-size: 2em;
-}
-
-#mainContent {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.flexRow {
-  display: flex;
-  flex-wrap: nowrap;
-  width: 100%;
-}
-
-.contentBlock {
-  margin: 0px;
-  border: 2px;
-  border-color: white;
-  border-style: solid;
-  flex: 10 0 150px;
+#headerSubSubText {
+  line-height: 1.5;
 }
