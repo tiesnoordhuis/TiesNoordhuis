@@ -1,0 +1,40 @@
+body {
+  background-color: #c0eaf2;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#headerRow {
+  background-color: #c0d9f1;
+}
+
+#headerSubSubText {
+  line-height: 1.5;
+}
+
+.contentBlock {
+  height: auto;
+}
+
+.contentRow {
+  height: 300px;
+}
+
+#block1 {
+  background-color: red;
+}
+
+#block2 {
+  background-color: green;
+}
+
+#block3 {
+  background-color: purple;
+}
+
+#block4 {
+  background-color: orange;
+}
