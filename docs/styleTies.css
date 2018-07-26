@@ -7,6 +7,10 @@ a {
   color: #00B7FF;
 }
 
+#mainContainer {
+  overflow: hidden;
+}
+
 #headerRow {
   background-color: #c0d9f1;
 }
