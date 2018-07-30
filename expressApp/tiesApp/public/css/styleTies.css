@@ -8,11 +8,12 @@ a {
 }
 
 #mainContainer {
-  overflow: hidden;
+  overflow: visible;
 }
 
 #headerRow {
   background-color: #c0d9f1;
+  overflow: hidden;
 }
 
 #headerSubSubText {
