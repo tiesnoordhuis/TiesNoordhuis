@@ -11,34 +11,10 @@ a {
   overflow: hidden;
 }
 
-#headerRow {
-  background-color: #c0d9f1;
+#mainRow {
+  height: 100%;
 }
 
-#headerSubSubText {
-  line-height: 1.5;
-}
-
-.contentBlock {
-  height: auto;
-}
-
-.contentRow {
-  height: 300px;
-}
-
-#block1 {
-  background-color: red;
-}
-
-#block2 {
-  background-color: green;
-}
-
-#block3 {
-  background-color: purple;
-}
-
-#block4 {
-  background-color: orange;
+.rounded-5 {
+  border-radius: 2rem !important;
 }
