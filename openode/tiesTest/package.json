@@ -1,0 +1,17 @@
+{
+  "name": "tiestest",
+  "version": "1.0.0",
+  "description": "test for hosting openode",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "http-errors": "^1.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "ties",
+  "license": "ISC"
+}
