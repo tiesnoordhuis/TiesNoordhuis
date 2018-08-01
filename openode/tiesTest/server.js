@@ -54,7 +54,15 @@ app.use(express.static(path.join(__dirname, 'node_modules/popper.js/dist/umd'), 
   response.setHeader("Content-Type", "text/javascript")
 }}));
 
-var port = process.env.PORT;
+function setPort() {
+  var portNr = process.env.PORT;
+  if (isNaN(portNr)) {
+    return 3000;
+  }
+  return portNr;
+}
+
+var port = setPort();
 
 var server = app.listen(port, () => {
   console.log("app listening port " + port);
