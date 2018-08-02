@@ -106,7 +106,7 @@ function closeBlocks() {
   }
 }
 
-var socketIO = io.connect("http://localhost");
+var socketIO = io.connect("http://localhost:3000");
 
 socketIO.on("serverData", (data) => {
   console.log(data);

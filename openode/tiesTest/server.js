@@ -10,15 +10,6 @@ const serverSocket = express.Router();
 const serverLogEvent = new events.EventEmitter();
 const socketIO = require("socket.io");
 
-var ioServerInstance = socketIO(server);
-
-ioServerInstance.on("connection", (socket) => {
-  socket.emit("serverData", { msg: "hello from server" });
-  socket.on("clientData", (data) => {
-    console.log(data);
-  })
-});
-
 var serverLog = [];
 
 serverLogEvent.on("request", (request) => {
@@ -71,9 +62,9 @@ var port = process.env.PORT || 3000;
 
 var socketApp = require("express")();
 var socketServer = http.Server(socketApp)
-var socketInstancee = socketIO(server);
+var socketInstancee = socketIO(socketServer);
 
-socketServer.listen(80);
+//socketServer.listen(3000);
 
 socketInstancee.on("connection", (socket) => {
   socket.emit("serverData", { msg: "hello from server" });
@@ -82,6 +73,6 @@ socketInstancee.on("connection", (socket) => {
   })
 });
 
-var server = http.createServer(socketApp).listen(port, () => {
+var server = app.listen(port, () => {
   console.log("app listening port " + port);
 });
