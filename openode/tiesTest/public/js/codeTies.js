@@ -105,3 +105,10 @@ function closeBlocks() {
     hiddenContentBoxesLarge[i].classList.add("d-none");
   }
 }
+
+var socketIO = io.connect("http://localhost");
+
+socketIO.on("serverData", (data) => {
+  console.log(data);
+  socketIO.emit("clientData", { msg: "hello from client" });
+});

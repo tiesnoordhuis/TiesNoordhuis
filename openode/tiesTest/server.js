@@ -1,3 +1,4 @@
+const http = require("http");
 const express = require("express");
 const app = express();
 const router = express.Router();
@@ -7,7 +8,16 @@ const createHTTPError = require("http-errors");
 const serverEventMesseger = express.Router();
 const serverSocket = express.Router();
 const serverLogEvent = new events.EventEmitter();
+const socketIO = require("socket.io");
 
+var ioServerInstance = socketIO(server);
+
+ioServerInstance.on("connection", (socket) => {
+  socket.emit("serverData", { msg: "hello from server" });
+  socket.on("clientData", (data) => {
+    console.log(data);
+  })
+});
 
 var serverLog = [];
 
@@ -53,9 +63,25 @@ app.use(express.static(path.join(__dirname, 'node_modules/jquery/dist'), {setHea
 app.use(express.static(path.join(__dirname, 'node_modules/popper.js/dist/umd'), {setHeaders: (response, path, stat) => {
   response.setHeader("Content-Type", "text/javascript")
 }}));
+app.use(express.static(path.join(__dirname, 'node_modules/socket.io-client/dist'), {setHeaders: (response, path, stat) => {
+  response.setHeader("Content-Type", "text/javascript")
+}}));
 
 var port = process.env.PORT || 3000;
 
-var server = app.listen(port, () => {
+var socketApp = require("express")();
+var socketServer = http.Server(socketApp)
+var socketInstancee = socketIO(server);
+
+socketServer.listen(80);
+
+socketInstancee.on("connection", (socket) => {
+  socket.emit("serverData", { msg: "hello from server" });
+  socket.on("clientData", (data) => {
+    console.log(data);
+  })
+});
+
+var server = http.createServer(socketApp).listen(port, () => {
   console.log("app listening port " + port);
 });
