@@ -17,6 +17,10 @@ socketServer.on("connection", (socket) => {
   socket.on("msgIn", (data) => {
     console.log(data);
   });
+  socket.on("serverDo", (data) => {
+    console.log(data);
+    socket.emit("clientDo", { data: "server tells this" });
+  });
 });
 
 app.use((request, response, next) => {
@@ -26,13 +30,13 @@ app.use((request, response, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile("public/html/index.html");
+  res.sendfile("public/html/index.html");
 });
 
 app.get("/socket.io.js", (req, res) => {
-  res.sendFile("node_modules/socket.io-client/dist/socket.io.js");
+  res.sendfile("node_modules/socket.io-client/dist/socket.io.js");
 });
 
 app.get("/codeTies.js", (req, res) => {
-  res.sendFile("public/js/codeTies.js");
+  res.sendfile("public/js/codeTies.js");
 });
