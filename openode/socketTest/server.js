@@ -4,7 +4,15 @@ const path = require("path");
 const express = require("express");
 const socketIO = require("socket.io");
 
-const app = express();
+var app = express();
+
+var serverLogEvent = new events.EventEmitter();
+
+var serverLog = [];
+
+serverLogEvent.on("connect", (data) => {
+  serverLog.push(data);
+})
 
 var port = process.env.PORT || 3000;
 
@@ -13,13 +21,15 @@ var server = http.createServer(app).listen(port);
 var socketServer = socketIO(server);
 
 socketServer.on("connection", (socket) => {
+  console.log(socket.handshake.headers["user-agent"]);
+  serverLogEvent.emit("connect", { id: socket.id, browserType: socket.handshake.headers["user-agent"], time: socket.handshake.time });
   socket.emit("msgOut", { data: "msg from server" });
   socket.on("msgIn", (data) => {
     console.log(data);
   });
   socket.on("serverDo", (data) => {
     console.log(data);
-    socket.emit("clientDo", { data: "server tells this" });
+    socket.emit("clientDo", { data: serverLog });
   });
 });
 

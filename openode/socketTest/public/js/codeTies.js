@@ -17,7 +17,12 @@ function tellServerToDo() {
   socketClient.emit("serverDo", { data: "tell the server to do something" });
 };
 
-function displayServerMsg(data) {
+function displayServerMsg(dataObject) {
+  var data = dataObject.data;
   console.log(data);
-  document.getElementById("serverMsgField").innerHTML = data.data;
+  document.getElementById("serverMsgField").innerHTML = "";
+  for (var i = 0; i < data.length; i++) {
+    let buildString = "user with id: " + data[i].id + " connected at: " + data[i].time + "</br>";
+    document.getElementById("serverMsgField").innerHTML += buildString;
+  }
 };
