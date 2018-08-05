@@ -8,15 +8,28 @@
 <body>
   <div>
     <p>
-      index file
+      communicate with a server
     </p>
+    <form id="serverMsgForm">
+      say something to the server</br>
+      <input id="serverMsg" type="text" name="message" value=" ">
+
+    </form>
     <button onclick="sendServerMsg()">
       send server msg
     </button>
-    <button onclick="tellServerToDo()">
-      tell server to do something
+    </br>
+    </br>
+    <button onclick="askServerMsg()">
+      ask server for messages
     </button>
     <p id="serverMsgField">
+
+    </p>
+    <button onclick="askServerLog()">
+      ask server for logs
+    </button>
+    <p id="serverLogField">
 
     </p>
   </div>

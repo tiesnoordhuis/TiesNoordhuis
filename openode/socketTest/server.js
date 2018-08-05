@@ -10,6 +10,8 @@ var serverLogEvent = new events.EventEmitter();
 
 var serverLog = [];
 
+var serverRecievedMessages = [];
+
 serverLogEvent.on("connect", (data) => {
   serverLog.push(data);
 })
@@ -26,10 +28,15 @@ socketServer.on("connection", (socket) => {
   socket.emit("msgOut", { data: "msg from server" });
   socket.on("msgIn", (data) => {
     console.log(data);
+    serverRecievedMessages.push({ msg: data.data, time: new Date() });
   });
   socket.on("serverDo", (data) => {
     console.log(data);
-    socket.emit("clientDo", { data: serverLog });
+    if (data.data === "log") {
+      socket.emit("clientDoLog", { data: serverLog });
+    } else {
+      socket.emit("clientDoMsg", { data: serverRecievedMessages });
+    }
   });
 });
 
