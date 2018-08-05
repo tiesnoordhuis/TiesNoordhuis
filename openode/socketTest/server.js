@@ -16,7 +16,7 @@ serverLogEvent.on("connect", (data) => {
   serverLog.push(data);
 })
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 
 var server = http.createServer(app).listen(port);
 

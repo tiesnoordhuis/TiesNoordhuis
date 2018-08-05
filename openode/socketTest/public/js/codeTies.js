@@ -1,4 +1,4 @@
-var socketClient = io("http://localhost:3000");
+var socketClient = io("http://serverinteraction.us.openode.io:80");
 
 socketClient.on("msgOut", (data) => {
   console.log(data);
