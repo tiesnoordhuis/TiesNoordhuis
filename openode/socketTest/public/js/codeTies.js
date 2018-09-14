@@ -1,4 +1,4 @@
-var socketClient = io("http://localhost:80");
+var socketClient = io("http://77.249.40.132:80");
 
 socketClient.on("msgOut", (data) => {
   console.log(data);
