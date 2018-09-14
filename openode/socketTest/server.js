@@ -57,3 +57,7 @@ app.get("/socket.io.js", (req, res) => {
 app.get("/codeTies.js", (req, res) => {
   res.sendfile("public/js/codeTies.js");
 });
+
+app.get("/favicon.ico", (req, res) => {
+  res.sendfile("public/images/favicon.ico");
+});
