@@ -11,3 +11,17 @@ function setContainer(height) {
   var container = document.getElementById("mainContainer");
   container.style.height = height;
 }
+
+function checkServerStatus() {
+    setServerStatus("unknown");
+    var img = document.body.appendChild(document.createElement("img"));
+    img.onload = function()
+    {
+        setServerStatus("online");
+    };
+    img.onerror = function()
+    {
+        setServerStatus("offline");
+    };
+    img.src = "http://localhost/favicon.ico\?" + Date.now();
+}
