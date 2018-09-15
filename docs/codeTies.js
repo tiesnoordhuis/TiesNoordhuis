@@ -13,15 +13,18 @@ function setContainer(height) {
 }
 
 function checkServerStatus() {
+  console.log("checking server online");
     setServerStatus("unknown");
     var img = document.body.appendChild(document.createElement("img"));
     img.onload = function()
     {
         setServerStatus("online");
+        console.log("online");
     };
     img.onerror = function()
     {
         setServerStatus("offline");
+        console.log("offline");
     };
     img.src = "http://localhost/favicon.ico\?" + Date.now();
 }
