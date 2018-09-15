@@ -28,7 +28,7 @@ socketServer.on("connection", (socket) => {
   socket.emit("msgOut", { data: "msg from server" });
   socket.on("msgIn", (data) => {
     console.log(data);
-    serverRecievedMessages.push({ msg: data.data, time: new Date() });
+    serverRecievedMessages.push({ msg: data.data, time: new Date() , id: socket.id});
   });
   socket.on("serverDo", (data) => {
     console.log(data);
@@ -47,17 +47,17 @@ app.use((request, response, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.sendfile("public/html/index.html");
+  res.sendFile(__dirname + "/public/html/index.html");
 });
 
 app.get("/socket.io.js", (req, res) => {
-  res.sendfile("node_modules/socket.io-client/dist/socket.io.js");
+  res.sendFile(__dirname + "/node_modules/socket.io-client/dist/socket.io.js");
 });
 
 app.get("/codeTies.js", (req, res) => {
-  res.sendfile("public/js/codeTies.js");
+  res.sendFile(__dirname + "/public/js/codeTies.js");
 });
 
 app.get("/favicon.ico", (req, res) => {
-  res.sendfile("public/images/favicon.ico");
+  res.sendFile(__dirname + "/public/images/favicon.ico");
 });
