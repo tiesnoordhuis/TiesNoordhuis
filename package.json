@@ -1,0 +1,24 @@
+{
+  "name": "tiesnoordhuis-site",
+  "version": "1.0.0",
+  "description": "personal homepage",
+  "scripts": {
+    "watch": "node-sass --include-path node_modules/foundation-sites/scss --watch scss --output docs/assets/css",
+    "build": "node-sass --include-path node_modules/foundation-sites/scss scss --output docs/assets/css",
+    "postbuild": "cp node_modules/jquery/dist/jquery.min.* docs/assets/js/ && cp node_modules/foundation-sites/dist/js/foundation.min.* docs/assets/js/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiesnoordhuis/TiesNoordhuis.git"
+  },
+  "author": "Ties",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiesnoordhuis/TiesNoordhuis/issues"
+  },
+  "homepage": "https://github.com/tiesnoordhuis/TiesNoordhuis#readme",
+  "dependencies": {
+    "foundation-sites": "^6.7.5",
+    "node-sass": "^8.0.0"
+  }
+}

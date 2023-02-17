@@ -1,2 +1,0 @@
-# TiesNoordhuis
-server and site
