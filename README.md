@@ -8,12 +8,14 @@ My experience is mostly in web development using:
 * PHP
 * Kotlin / Java
 * HTML / CSS
+
 Using frameworks like:
 * React
 * Laravel
 * Angular
 * Spring Boot
 * Expressjs
+
 Besides web development I have worked on mulitple different projects:
 * Building and programming STM32 microcontrollers in C
 * Feature enginering for a prediction model using computer vision in Python using sklearn
