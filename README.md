@@ -25,4 +25,4 @@ Among my programming hobbies are competing in Regex Golf and the Advent of Code.
 ## Personal website
 
 This readme is also part of the repository for my webpage [tiesnoordhuis.nl](https://tiesnoordhuis.nl/).
-Please not that this webpage is outdated.
+Please note that this webpage is outdated.
