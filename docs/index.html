@@ -1,43 +1,80 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <title>
-    Ties Noordhuis
-  </title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="bootstrap.css" type="text/css" rel="stylesheet">
-  <link href="styleTies.css" type="text/css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ties Noordhuis</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div id="mainContainer" class="container-fluid">
-    <div id="mainRow" class="row">
-      <div class="jumbotron rounded-5 mx-auto my-auto">
-        <div class="container">
-          <h1 class="display-4">Ties Noordhuis</h1>
-        </br>
-          <p class="lead">
-            I'm a software developer with loads of hobbies and projects
-          </br>
-            here is a brief overview of some of the websites i have created
-          </br>
-            for information about these or any of my other project please dont hesitate to contact:
-          </br>
-            <a class="badge badge-info my-2 p-2" href="mailto:tiesnoordhuis@gmail.com"> tiesnoordhuis@gmail.com</a>
-          </p>
-        </br>
-          <a class="btn btn-secondary my-2" href="https://bellwaldchalet.nl/"> Vacation home, info and renting</a>
-        </br>
-          <a class="btn btn-secondary my-2" href="https://tiesnoordhuis.github.io/deWereldKlas/"> De Wereldklas, education from traveling teacher</a>
-          <span> under construction </span>
-        </br>
-          <a class="btn btn-secondary my-2" href="http://annotech.nl/"> Annotech, business website</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script language="javascript" type="text/javascript" src="jquery.js"></script>
-  <script language="javascript" type="text/javascript" src="popper.js"></script>
-  <script language="javascript" type="text/javascript" src="bootstrap.js"></script>
-  <script language="javascript" type="text/javascript" src="codeTies.js"></script>
+
+<body class="flex-center">
+  <main class="flex-column">
+    <h1>Ties Noordhuis</h1>
+    <hr>
+
+    <section>
+      <h2>Who am I</h2>
+      <p>
+        I'm a software developer and teacher at the Bit Academy.<br>
+        Most of my experience is in web development.<br>
+        In my profesional work I have also done many smaller project with other modern and inovative technologies such as
+        creating custom microcontrollers, programming <abbr title="Bluetooth Low Energy">BLE</abbr> beacons, implementing
+        <abbr title="Optical Character Recognition">OCR</abbr> and traning computer vision models.
+      </p>
+    </section>
+
+    <section>
+      <h2>What do I enjoy</h2>
+      <p>
+        There are multiple technologies I enjoy working with.<br>
+        Most things I try to understand from first principles, which has led me to keep up with modern inclusions in
+        JavaScript, HTML and CSS.<br>
+        Some examples are the ES6 syntax, web components and fun HTML elements like details/summary and template.<br>
+        I like using Regex especialy with unicode categories and backreferences.<br>
+        For my fullstack web development I have worked with React (native), Angular, Spring boot, Laravel using mostly
+        MySQL and PostgreSQL.
+      </p>
+    </section>
+
+    <section>
+      <h2>Motivation</h2>
+      <p>
+        Currently I'm building <a href="https://motivation.tiesnoordhuis.nl">Motivation</a>, a self-hosted personal dashboard as a
+        <abbr title="Progressive Web App">PWA</abbr> in vanilla web components, using a lot of modern webbrowser API's.<br>
+        It uses a service worker for offline-first, a web worker with a SQLite replica in
+        <abbr title="Origin Private File System">OPFS</abbr> that syncs to my home server, barcode
+        scanning through the camera and Web Push for notifications.<br>
+        It also uses a sideloaded Kotlin app to bridge to Android <abbr title="Android's on-device health data store">Health Connect</abbr>.<br>
+        At home I run a local <abbr title="Large Language Model">LLM</abbr> for in app features like estimating meal nutrition from photos and/or descriptions.
+      </p>
+    </section>
+
+    <section>
+      <h2>Other projects</h2>
+      <p>
+        Some of my older work can be found online:
+      </p>
+      <ul>
+        <li><a href="https://bellwaldchalet.nl/">Vaction home (bellwaldchalet.nl)</a></li>
+        <li><a href="https://annotech.nl/">Business info page (annotech.nl)</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>GitHub</h2>
+      <p>
+        Most of my public work is divided over a couple github profiles:
+      </p>
+      <ol>
+        <li><a href="https://github.com/TiesNoordhuis">github.com/TiesNoordhuis</a>, my personal profile</li>
+        <li>
+          <a href="https://github.com/TiesNoordhuisBITAcademy">github.com/TiesNoordhuisBITAcademy</a>,
+          my work profile at the Bit Academy
+        </li>
+      </ol>
+    </section>
+  </main>
 </body>
+
 </html>
